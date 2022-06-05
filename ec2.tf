@@ -6,6 +6,10 @@ resource "aws_instance" "app_server" {
   associate_public_ip_address = true
   key_name = "lab-devops-01"
 
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${self.public_ip},' -u ubuntu --private-key=${var.pvt_key} install-docker.yaml"
+  }
+
   tags = {
     Name = var.tag_name
   }
