@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:5.7
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - database
+    environment:
+      MYSQL_ROOT_PASSWORD: lab-devops-01
+      MYSQL_DATABASE: lab-devops-01
+      MYSQL_USER: lab-devops-01
+      MYSQL_PASSWORD: lab-devops-01
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+    - db
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+    - "80:80"
+    networks:
+      - database
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: lab-devops-01
+      WORDPRESS_DB_USER: lab-devops-01
+      WORDPRESS_DB_PASSWORD: lab-devops-01
+
+volumes:
+  db_data:
+
+networks:
+  database:
