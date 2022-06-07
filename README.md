@@ -37,6 +37,12 @@ A ideia desse laboratório é disponibilizar um blog wordpress com mysql em dock
 
 ---
 
+### 🐛 Bug
+
+* As vezes pode ocorrer de não se executar a tarefa do ansible, por causa do _provisioner local-exec/remote-exec_. Uma parte da documentação do terraform diz que estes _provisioners_ devem ser utilizados como último recurso e explica o por que de o host ficar "unreacheble" em alguns casos: "Note that even though the resource will be fully created when the provisioner is run, there is no guarantee that it will be in an operable state - for example system services such as sshd may not be started yet on compute resources.". Como é um laboratório, eu executo novamente o terraform que recria o EC2 e executa novamente.
+
+---
+
 ### 🤔 Algumas considerações do laboratório
 Meu principal objetivo com este projeto/laboratório, foi sair do zero com essas ferramentas e começar a utilizar o git e github. Estou iniciando meus estudos para atuar como devops, acredito que tenha formas mais eficientes e seguras de se fazer este processo, mas tenha em mente que foi feito por um estudante com muita vontade de aprender e fazer 😜
 
